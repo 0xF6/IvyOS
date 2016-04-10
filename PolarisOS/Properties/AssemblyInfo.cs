@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором 
 // атрибутов. Отредактируйте значения этих атрибутов, чтобы изменить
 // общие сведения об этой сборке.
-[assembly: AssemblyTitle("PolarisOS.Properties")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("PolarsOS.Kernel")]
+[assembly: AssemblyDescription("Kernel for Polaris OS")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PolarisOS.Properties")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("DuoFlux")]
+[assembly: AssemblyProduct("Polaris OS")]
+[assembly: AssemblyCopyright("Yuuki Wesp")]
+[assembly: AssemblyTrademark("PolarisOS")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False в параметре ComVisible делает типы в этой сборке невидимыми 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //   Номер сборки
 //      Редакция
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.5.450")]
+[assembly: AssemblyFileVersion("0.1.5.450")]
