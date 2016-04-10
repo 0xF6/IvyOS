@@ -57,6 +57,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -97,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver\IO\IOPort.cs" />
+    <Compile Include="IO\BinaryWriter.cs" />
+    <Compile Include="IO\MemoryStream.cs" />
     <Compile Include="IO\Stream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
