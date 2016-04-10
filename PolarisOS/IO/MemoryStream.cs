@@ -32,7 +32,7 @@
 
         internal void WriteByte(uint p, byte b)
         {
-            if (p > length) eof = true; else eof = false;
+            eof = p > length;
             if (!eof) data[p] = b;
         }
     }
