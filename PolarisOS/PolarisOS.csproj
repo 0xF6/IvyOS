@@ -92,15 +92,18 @@
     <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Driver\Audio\" />
     <Folder Include="Driver\Core\" />
     <Folder Include="Driver\Graphics\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Exception\KernelException.cs" />
+    <Compile Include="Driver\Audio\PCSpeaker.cs" />
     <Compile Include="Driver\IO\IOPort.cs" />
+    <Compile Include="Extension\StringExtensions.cs" />
     <Compile Include="IO\BinaryWriter.cs" />
     <Compile Include="IO\MemoryStream.cs" />
     <Compile Include="IO\Stream.cs" />
+    <Compile Include="IO\VideoStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
