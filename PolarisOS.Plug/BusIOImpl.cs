@@ -8,7 +8,7 @@ using CPUx86 = Cosmos.Assembler.x86;
 
 namespace PolarisOS.Plugs
 {
-    [Plug(Target = typeof(BusIO))]
+    [Plug(Target = typeof(IOBus))]
     public class BusIOImpl
     {
         [Inline]

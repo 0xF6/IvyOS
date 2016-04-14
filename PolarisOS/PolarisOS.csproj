@@ -95,14 +95,16 @@
     <Folder Include="Driver\Graphics\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API.cs" />
     <Compile Include="Core\Exception\KernelException.cs" />
     <Compile Include="Driver\Audio\PCSpeaker.cs" />
     <Compile Include="Driver\Core\IDT.cs" />
     <Compile Include="Driver\Core\IRQ.cs" />
     <Compile Include="Driver\Core\PIT.cs" />
+    <Compile Include="Driver\Core\STIEnabler.cs" />
     <Compile Include="Driver\Core\Template\FACP.cs" />
     <Compile Include="Driver\Core\Template\RSDPtr.cs" />
-    <Compile Include="Driver\IO\BusIO.cs" />
+    <Compile Include="Driver\IO\IOBus.cs" />
     <Compile Include="Driver\IO\IOPort.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
@@ -115,7 +117,11 @@
     <Compile Include="IO\MemoryStream.cs" />
     <Compile Include="IO\Stream.cs" />
     <Compile Include="IO\VideoStream.cs" />
+    <Compile Include="Kernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Copyright.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public abstract class BusIO
+    public abstract class IOBus
     {
         //TODO: Reads and writes can use this to get port instead of argument
         protected static void Write8(UInt16 aPort, byte aData) { } // Plugged
