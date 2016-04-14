@@ -1,4 +1,4 @@
-﻿namespace PolarisOS.Extension
+﻿namespace PolarisOS
 {
     using Cosmos.HAL.SolarisGroup;
 
