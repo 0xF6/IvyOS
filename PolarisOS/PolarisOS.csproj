@@ -92,12 +92,14 @@
     <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Driver\Core\" />
     <Folder Include="Driver\Graphics\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Exception\KernelException.cs" />
     <Compile Include="Driver\Audio\PCSpeaker.cs" />
+    <Compile Include="Driver\Core\IDT.cs" />
+    <Compile Include="Driver\Core\IRQ.cs" />
+    <Compile Include="Driver\Core\PIT.cs" />
     <Compile Include="Driver\IO\IOPort.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
     <Compile Include="IO\BinaryWriter.cs" />
