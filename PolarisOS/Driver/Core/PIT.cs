@@ -39,7 +39,7 @@
             if (milliseconds <= 50)
             {
                 called = false;
-                Mode0(milliseconds / 1000);
+                Mode0(milliseconds.MsToHz());
                 while (!called) { }
                 called = false;
             }
