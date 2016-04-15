@@ -91,9 +91,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Driver\Graphics\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="Core\Exception\KernelException.cs" />
@@ -104,6 +102,13 @@
     <Compile Include="Driver\Core\STIEnabler.cs" />
     <Compile Include="Driver\Core\Template\FACP.cs" />
     <Compile Include="Driver\Core\Template\RSDPtr.cs" />
+    <Compile Include="Driver\Graphics\VMWare\FIFO.cs" />
+    <Compile Include="Driver\Graphics\VMWare\FIFOCommand.cs" />
+    <Compile Include="Driver\Graphics\VMWare\IOPortOffset.cs" />
+    <Compile Include="Driver\Graphics\VMWare\SVGA.cs" />
+    <Compile Include="Driver\Graphics\VMWare\VGACapability.cs" />
+    <Compile Include="Driver\Graphics\VMWare\VGAID.cs" />
+    <Compile Include="Driver\Graphics\VMWare\VGARegister.cs" />
     <Compile Include="Driver\IO\IOBus.cs" />
     <Compile Include="Driver\IO\IOPort.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
