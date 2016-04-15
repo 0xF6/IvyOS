@@ -175,15 +175,8 @@
             WaitForFifo();
         }
 
-        public void SetPixel(int x, int y, int color)
-        {
-            Video_Memory[(uint) ((y*width + x)*depth)] = (ushort) color;
-        }
-
-        public uint GetPixel(ushort x, ushort y)
-        {
-            return Video_Memory[(uint) ((y*width + x)*depth)];
-        }
+        public void SetPixel(int x, int y, int color) => Video_Memory[(uint) ((y*width + x)*depth)] = (ushort) color;
+        public uint GetPixel(ushort x, ushort y) => Video_Memory[(uint) ((y*width + x)*depth)];
 
         public void Clear(uint color)
         {
@@ -209,10 +202,7 @@
                 WriteToFifo(height);
                 WaitForFifo();
             }
-            else
-            {
-                throw new NotImplementedException("VMWareSVGAII Copy()");
-            }
+            else throw new NotImplementedException("VMWareSVGAII Copy()");
         }
 
         public void Fill(ushort x, ushort y, ushort width, ushort height, uint color)
@@ -236,27 +226,19 @@
                     ushort yTarget = (ushort) (y + height);
 
                     for (ushort xTmp = x; xTmp < xTarget; xTmp++)
-                    {
-                        SetPixel(xTmp, y, (ushort) color);
-                    }
+                        SetPixel(xTmp, y, (ushort)color);
                     // refresh first line for copy process
                     Update(x, y, width, 1);
                     for (ushort yTmp = (ushort) (y + 1); yTmp < yTarget; yTmp++)
-                    {
                         Copy(x, y, x, yTmp, width, 1);
-                    }
                 }
                 else
                 {
                     ushort xTarget = (ushort) (x + width);
                     ushort yTarget = (ushort) (y + height);
                     for (ushort xTmp = x; xTmp < xTarget; xTmp++)
-                    {
                         for (ushort yTmp = y; yTmp < yTarget; yTmp++)
-                        {
-                            SetPixel(xTmp, yTmp, (ushort) color);
-                        }
-                    }
+                            SetPixel(xTmp, yTmp, (ushort)color);
                     Update(x, y, width, height);
                 }
             }
@@ -273,10 +255,8 @@
             WriteToFifo(2);
             WriteToFifo(1);
             WriteToFifo(1);
-            for (int i = 0; i < 4; i++)
-                WriteToFifo(0);
-            for (int i = 0; i < 4; i++)
-                WriteToFifo(0xFFFFFF);
+            for (int i = 0; i < 4; i++) WriteToFifo(0);
+            for (int i = 0; i < 4; i++) WriteToFifo(0xFFFFFF);
             WaitForFifo();
         }
 
@@ -292,5 +272,47 @@
             }
             WriteRegister(VGARegister.CursorOn, (uint) (visible ? 1 : 0));
         }
+
+
+        private static int i = 0;
+        private static int t = 0;
+        private static int count = 0;
+        private static int bb, cc;
+
+        public void DrawFrame(uint[] Arr, int width, int length, int xpixel, int ypixel)
+        {
+            count = 0;
+            for (i = 0; i < length; i++)
+            for (t = 0; t < width; t++, count++)
+            if (Arr[count] != 0xFF00FF)
+            SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), (int)Arr[count]);
+        }
+        public void DrawFrameColor(uint[] Arr, int width, int length, int xpixel, int ypixel, int color)
+        {
+            count = 0;
+            for (i = 0; i < length; i++)
+            for (t = 0; t < width; t++, count++)
+            if (Arr[count] == 1)
+            SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), color);
+        }
+        public void DrawFrameBlackAndWhite(uint[] Arr, int width, int length, int xpixel, int ypixel)
+        {
+            count = 0;
+            for (i = 0; i < length; i++)
+            for (t = 0; t < width; t++, count++)
+            {
+                if (Arr[count] == 1)
+                    SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), 0x000000);
+                if (Arr[count] == 2)
+                    SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), 0xffffff);
+            }
+        }
+        public void DrawRectangle(int x, int y, int width, int length, int color)
+        {
+            for (bb = x; bb < x + width; bb++)
+            for (cc = y; cc < y + length; cc++)
+            SetPixel(bb, cc, color);
+        }
+
     }
 }
