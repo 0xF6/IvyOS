@@ -113,6 +113,7 @@
     <Compile Include="Driver\IO\IOPort.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
+    <Compile Include="HAL\Display.cs" />
     <Compile Include="HAL\KeyBoard\KeyLayoutBase.cs" />
     <Compile Include="HAL\KeyBoard\Layout\AZERTY.cs" />
     <Compile Include="HAL\KeyBoard\Layout\QWERTY.cs" />
