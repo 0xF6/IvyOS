@@ -1,5 +1,6 @@
 ﻿namespace PolarisOS.HAL.KeyBoard.Layout
 {
+    using System.Collections.Generic;
     using Cosmos.HAL;
 
     /// <summary>
@@ -9,6 +10,9 @@
     {
         protected override void InitKeys()
         {
+            _keys = new List<KeyMapping>();
+
+
             #region A Z E R T Y U I O P
             AddKey(16u, 'a', ConsoleKeyEx.A);
             AddKey(1048576u, 'A', ConsoleKeyEx.A);
