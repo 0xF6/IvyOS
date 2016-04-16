@@ -75,13 +75,18 @@
         }
     }
 
+    public enum DepthValue
+    {
+        x256,
+        x16
+    }
 
     public class SVGADriver
     {
-        private readonly IOPort IndexPort;
-        private readonly IOPort ValuePort;
-        private IOPort BiosPort;
-        private IOPort IRQPort;
+        internal readonly IOPort IndexPort;
+        internal readonly IOPort ValuePort;
+        internal IOPort BiosPort;
+        internal IOPort IRQPort;
 
         private readonly MemoryBlock Video_Memory;
         private MemoryBlock FIFO_Memory;
@@ -125,39 +130,54 @@
             WriteRegister(VGARegister.ConfigDone, 1);
         }
 
-        public void SetMode(ScreenSize size, ushort depth = 32, bool isClear = true, ushort colorClear = 255)
+        public void SetMode(ScreenSize size, DepthValue depth, bool isClear = true, ushort colorClear = 255)
         {
+            ushort depthUshort = 0;
+
+            switch (depth)
+            {
+                case DepthValue.x256:
+                    depthUshort = 256;
+                    break;
+                case DepthValue.x16:
+                    depthUshort = 16;
+                    break;
+                default:
+                    goto case DepthValue.x256;
+            }
+
+
             switch (size)
             {
                 case ScreenSize.v800x600:
-                    SetMode(800, 600, depth);
+                    SetMode(800, 600, depthUshort);
                     break;
                 case ScreenSize.v1024x768:
-                    SetMode(1024, 768, depth);
+                    SetMode(1024, 768, depthUshort);
                     break;
                 case ScreenSize.v1280x720:
-                    SetMode(1280, 720, depth);
+                    SetMode(1280, 720, depthUshort);
                     break;
                 case ScreenSize.v1360x768:
-                    SetMode(1360, 768, depth);
+                    SetMode(1360, 768, depthUshort);
                     break;
                 case ScreenSize.v1360x1024:
-                    SetMode(1360, 1024, depth);
+                    SetMode(1360, 1024, depthUshort);
                     break;
                 case ScreenSize.v1366x768:
-                    SetMode(1366, 768, depth);
+                    SetMode(1366, 768, depthUshort);
                     break;
                 case ScreenSize.v1440x900:
-                    SetMode(1440, 900, depth);
+                    SetMode(1440, 900, depthUshort);
                     break;
                 case ScreenSize.v1600x1200:
-                    SetMode(1600, 1200, depth);
+                    SetMode(1600, 1200, depthUshort);
                     break;
                 case ScreenSize.v1680x1050:
-                    SetMode(1680, 1050, depth);
+                    SetMode(1680, 1050, depthUshort);
                     break;
                 case ScreenSize.v1920x1080:
-                    SetMode(1920, 1080, depth);
+                    SetMode(1920, 1080, depthUshort);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(size), size, null);
@@ -167,7 +187,7 @@
         }
 
 
-        public void SetMode(ushort width, ushort height, ushort depth = 32)
+        public void SetMode(ushort width, ushort height, ushort depth = 256)
         {
             // Depth is color depth in bytes.
             this.depth = (uint) (depth/8);
