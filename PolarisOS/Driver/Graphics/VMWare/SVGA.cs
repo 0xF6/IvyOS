@@ -253,7 +253,7 @@
         }
 
         public void SetPixel(int x, int y, int color) => Video_Memory[(uint) ((y*width + x)*depth)] = (ushort) color;
-        public uint GetPixel(ushort x, ushort y) => Video_Memory[(uint) ((y*width + x)*depth)];
+        public uint GetPixel(int x, int y) => Video_Memory[(uint) ((y*width + x)*depth)];
 
         public void Clear(uint color)
         {

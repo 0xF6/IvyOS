@@ -23,7 +23,7 @@ namespace PolarisOS
             {
                 STIEnabler se = new STIEnabler();
                 se.Enable();
-                STI(); // We need to enable interrupts so we can read, but for some reason this does not work :(
+                STI(); //! We need to enable interrupts so we can read, but for some reason this does not work :(
 
                 byte* ptr = (byte*)aContext.EDI; // Input buffer
                 string str = Console.ReadLine();
