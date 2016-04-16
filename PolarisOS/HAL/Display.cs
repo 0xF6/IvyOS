@@ -1,4 +1,5 @@
-﻿using PolarisOS.Driver.Graphics;
+﻿using Cosmos.Core.IOGroup;
+using PolarisOS.Driver.Graphics;
 
 namespace PolarisOS.HAL
 {
@@ -9,7 +10,7 @@ namespace PolarisOS.HAL
     {
         public struct SetupInfo
         {
-            public ushort depth;
+            public DepthValue depth;
             public bool isClear;
             public ushort depthColor;
             public ScreenSize resolution;
@@ -22,20 +23,20 @@ namespace PolarisOS.HAL
         { Size40x25, Size40x50, Size80x25, Size80x50, Size90x30, Size90x60 };
 
         private static SVGADriver vga;
-        private static ushort depth;
+        private static DepthValue depth;
         private static ScreenSize CurrentRes;
 
 
         public static void Setup(SetupInfo inf)
         {
             vga = new SVGADriver();
-            vga.SetMode(inf.resolution, depth:inf.depth, isClear:inf.isClear, colorClear:inf.depthColor);
+            vga.SetMode(inf.resolution, inf.depth, inf.isClear, inf.depthColor);
             depth = inf.depth;
             CurrentRes = inf.resolution;
 
             VGAColors.ClearEntys();
             //Now add in our colors based on resolution.
-            if (depth == 256)
+            if (depth == DepthValue.x256)
             {
                 //Set all of our needed colors for our 256 colors.
                 //These are contain the basics, and the advanced, use them.
@@ -103,7 +104,7 @@ namespace PolarisOS.HAL
                 VGAColors.AddEntry(124, 252, 0);
                 VGAColors.AddEntry(255, 250, 205); //LemonChiffon
             }
-            else if (depth == 16)
+            else if (depth == DepthValue.x16)
             {
                 //Set our 16 colors. Now since we only have 16 colors, lets
                 //add the most common ones.
@@ -125,26 +126,21 @@ namespace PolarisOS.HAL
                 VGAColors.AddEntry(255, 255, 0);
             }
             //No matter what Resolution, still set all the colors in the entrys.
-            for (int i = 0; i < VGAColors.PalletteEntrys.Count; i++)
-            {
-                SetPaletteEntry(VGAColors.PalletteEntrys[i].Index, VGAColors.PalletteEntrys[i]);
-            }
+            foreach (Color t in VGAColors.PalletteEntrys)
+                SetPaletteEntry(t.Index, t);
             //Now lets clear the screen to black, since 16 colors or 256 colors, they all contain black.
             Clear(VGAColors.FindIndex(0, 0, 0));
             //Now draw our test square.
-            if (vga.GetPixel(1, 1) == VGAColors.FindIndex(0, 0, 0))
+            if (vga.GetPixel(1, 1) != VGAColors.FindIndex(0, 0, 0)) return;
+
+            int c = VGAColors.FindIndex(255, 0, 0);
+            for (uint y = 8; y < CurrentRes.getHeight() - 8; y++)
             {
-                int c = VGAColors.FindIndex(255, 0, 0);
-                for (uint y = 8; y < ScreenHeight - 8; y++)
+                for (uint x = 8; x < CurrentRes.getWidth() - 8; x++)
                 {
-                    for (uint x = 8; x < ScreenWidth - 8; x++)
-                    {
-                        SetPixel(x, y, (uint)c);
-                    }
+                    SetPixel((int)x, (int)y, c);
                 }
             }
-
-
         }
 
         public static void Clear(int Color) => vga.Clear((uint)Color);
@@ -188,6 +184,44 @@ namespace PolarisOS.HAL
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+
+
+        /// <summary>
+        /// Sets a Pallette Entry.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="color"></param>
+        private static void SetPaletteEntry(int index, Color color)
+        {
+            SetPaletteEntry(index, color.Red, color.Green, color.Blue);
+        }
+        /// <summary>
+        /// Sets a Pallette
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pallete"></param>
+        private static void SetPalette(int index, byte[] pallete)
+        {
+            vga.IndexPort.Byte = (byte)index;
+            foreach (byte t in pallete)
+                vga.ValuePort.Byte = (byte)(t >> 2);
+        }
+
+        /// <summary>
+        /// Sets a Pallette Entry.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        private static void SetPaletteEntry(int index, byte r, byte g, byte b)
+        {
+            vga.IndexPort.Byte = (byte)index;
+            vga.ValuePort.Byte = (byte)(r >> 2);
+            vga.ValuePort.Byte = (byte)(g >> 2);
+            vga.ValuePort.Byte = (byte)(b >> 2);
         }
     }
 }
