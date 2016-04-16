@@ -18,6 +18,63 @@
         v1920x1080
     }
 
+    public static class ScreenSizeEx
+    {
+        public static ushort getWidth(this ScreenSize s)
+        {
+            switch (s)
+            {
+                case ScreenSize.v800x600:
+                    return 800;
+                case ScreenSize.v1024x768:
+                    return 1024;
+                case ScreenSize.v1280x720:
+                    return 1278;
+                case ScreenSize.v1360x768:
+                case ScreenSize.v1360x1024:
+                    return 1360;
+                case ScreenSize.v1366x768:
+                    return 1366;
+                case ScreenSize.v1440x900:
+                    return 1440;
+                case ScreenSize.v1600x1200:
+                    return 1600;
+                case ScreenSize.v1680x1050:
+                    return 1680;
+                case ScreenSize.v1920x1080:
+                    return 1920;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(s), s, null);
+            }
+        }
+        public static ushort getHeight(this ScreenSize s)
+        {
+            switch (s)
+            {
+                case ScreenSize.v800x600:
+                    return 600;
+                case ScreenSize.v1360x768:
+                case ScreenSize.v1366x768:
+                case ScreenSize.v1024x768:
+                    return 768;
+                case ScreenSize.v1280x720:
+                    return 720;
+                case ScreenSize.v1360x1024:
+                    return 1024;
+                case ScreenSize.v1440x900:
+                    return 900;
+                case ScreenSize.v1600x1200:
+                    return 1200;
+                case ScreenSize.v1680x1050:
+                    return 1050;
+                case ScreenSize.v1920x1080:
+                    return 1080;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(s), s, null);
+            }
+        }
+    }
+
 
     public class SVGADriver
     {
@@ -37,16 +94,16 @@
 
         public SVGADriver()
         {
-            device = (PCIDeviceNormal)PCI.GetDevice(0x15AD, 0x0405);
+            device = (PCIDeviceNormal) PCI.GetDevice(0x15AD, 0x0405);
             device.EnableMemory(true);
             uint basePort = device.BaseAddresses[0].BaseAddress();
-            IndexPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Index));
-            ValuePort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Value));
-            BiosPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Bios));
-            IRQPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.IRQ));
+            IndexPort = new IOPort((ushort) (basePort + (uint) IOPortOffset.Index));
+            ValuePort = new IOPort((ushort) (basePort + (uint) IOPortOffset.Value));
+            BiosPort = new IOPort((ushort) (basePort + (uint) IOPortOffset.Bios));
+            IRQPort = new IOPort((ushort) (basePort + (uint) IOPortOffset.IRQ));
 
-            WriteRegister(VGARegister.ID, (uint)ID.V2);
-            if (ReadRegister(VGARegister.ID) != (uint)ID.V2)
+            WriteRegister(VGARegister.ID, (uint) ID.V2);
+            if (ReadRegister(VGARegister.ID) != (uint) ID.V2)
                 return;
 
             Video_Memory = new MemoryBlock(ReadRegister(VGARegister.FrameBufferStart), ReadRegister(VGARegister.VRamSize));
@@ -60,11 +117,11 @@
         {
             FIFO_Memory = new MemoryBlock(ReadRegister(VGARegister.MemStart), ReadRegister(VGARegister.MemSize))
             {
-                [(uint) FIFO.Min] = (uint) VGARegister.FifoNumRegisters * sizeof(uint)
+                [(uint) FIFO.Min] = (uint) VGARegister.FifoNumRegisters*sizeof (uint)
             };
-            FIFO_Memory[(uint)FIFO.Max] = FIFO_Memory.Size;
-            FIFO_Memory[(uint)FIFO.NextCmd] = FIFO_Memory[(uint)FIFO.Min];
-            FIFO_Memory[(uint)FIFO.Stop] = FIFO_Memory[(uint)FIFO.Min];
+            FIFO_Memory[(uint) FIFO.Max] = FIFO_Memory.Size;
+            FIFO_Memory[(uint) FIFO.NextCmd] = FIFO_Memory[(uint) FIFO.Min];
+            FIFO_Memory[(uint) FIFO.Stop] = FIFO_Memory[(uint) FIFO.Min];
             WriteRegister(VGARegister.ConfigDone, 1);
         }
 
@@ -105,8 +162,8 @@
                 default:
                     throw new ArgumentOutOfRangeException(nameof(size), size, null);
             }
-            if(isClear)
-            Clear(colorClear);
+            if (isClear)
+                Clear(colorClear);
         }
 
 
@@ -123,24 +180,24 @@
             InitializeFIFO();
         }
 
-        protected void WriteRegister(VGARegister register, uint value)
+        internal void WriteRegister(VGARegister register, uint value)
         {
             IndexPort.DWord = (uint) register;
             ValuePort.DWord = value;
         }
 
-        protected uint ReadRegister(VGARegister register)
+        internal uint ReadRegister(VGARegister register)
         {
             IndexPort.DWord = (uint) register;
             return ValuePort.DWord;
         }
 
-        protected uint GetFIFO(FIFO cmd)
+        internal uint GetFIFO(FIFO cmd)
         {
             return FIFO_Memory[(uint) cmd];
         }
 
-        protected uint SetFIFO(FIFO cmd, uint value)
+        internal uint SetFIFO(FIFO cmd, uint value)
         {
             return FIFO_Memory[(uint) cmd] = value;
         }
@@ -153,7 +210,7 @@
             }
         }
 
-        protected void WriteToFifo(uint value)
+        internal void WriteToFifo(uint value)
         {
             if (((GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4) && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min)) || (GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop)))
                 WaitForFifo();
@@ -226,7 +283,7 @@
                     ushort yTarget = (ushort) (y + height);
 
                     for (ushort xTmp = x; xTmp < xTarget; xTmp++)
-                        SetPixel(xTmp, y, (ushort)color);
+                        SetPixel(xTmp, y, (ushort) color);
                     // refresh first line for copy process
                     Update(x, y, width, 1);
                     for (ushort yTmp = (ushort) (y + 1); yTmp < yTarget; yTmp++)
@@ -238,7 +295,7 @@
                     ushort yTarget = (ushort) (y + height);
                     for (ushort xTmp = x; xTmp < xTarget; xTmp++)
                         for (ushort yTmp = y; yTmp < yTarget; yTmp++)
-                            SetPixel(xTmp, yTmp, (ushort)color);
+                            SetPixel(xTmp, yTmp, (ushort) color);
                     Update(x, y, width, height);
                 }
             }
@@ -283,36 +340,38 @@
         {
             count = 0;
             for (i = 0; i < length; i++)
-            for (t = 0; t < width; t++, count++)
-            if (Arr[count] != 0xFF00FF)
-            SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), (int)Arr[count]);
+                for (t = 0; t < width; t++, count++)
+                    if (Arr[count] != 0xFF00FF)
+                        SetPixel((int) (0 + (uint) t + 0 + (uint) xpixel), (int) (0 + (uint) i + 0 + (uint) ypixel), (int) Arr[count]);
         }
+
         public void DrawFrameColor(uint[] Arr, int width, int length, int xpixel, int ypixel, int color)
         {
             count = 0;
             for (i = 0; i < length; i++)
-            for (t = 0; t < width; t++, count++)
-            if (Arr[count] == 1)
-            SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), color);
+                for (t = 0; t < width; t++, count++)
+                    if (Arr[count] == 1)
+                        SetPixel((int) (0 + (uint) t + 0 + (uint) xpixel), (int) (0 + (uint) i + 0 + (uint) ypixel), color);
         }
+
         public void DrawFrameBlackAndWhite(uint[] Arr, int width, int length, int xpixel, int ypixel)
         {
             count = 0;
             for (i = 0; i < length; i++)
-            for (t = 0; t < width; t++, count++)
-            {
-                if (Arr[count] == 1)
-                    SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), 0x000000);
-                if (Arr[count] == 2)
-                    SetPixel((int)(0 + (uint)t + 0 + (uint)xpixel), (int)(0 + (uint)i + 0 + (uint)ypixel), 0xffffff);
-            }
+                for (t = 0; t < width; t++, count++)
+                {
+                    if (Arr[count] == 1)
+                        SetPixel((int) (0 + (uint) t + 0 + (uint) xpixel), (int) (0 + (uint) i + 0 + (uint) ypixel), 0x000000);
+                    if (Arr[count] == 2)
+                        SetPixel((int) (0 + (uint) t + 0 + (uint) xpixel), (int) (0 + (uint) i + 0 + (uint) ypixel), 0xffffff);
+                }
         }
+
         public void DrawRectangle(int x, int y, int width, int length, int color)
         {
             for (bb = x; bb < x + width; bb++)
-            for (cc = y; cc < y + length; cc++)
-            SetPixel(bb, cc, color);
+                for (cc = y; cc < y + length; cc++)
+                    SetPixel(bb, cc, color);
         }
-
     }
 }
