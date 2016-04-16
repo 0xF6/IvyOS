@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="Core\Exception\KernelException.cs" />
+    <Compile Include="Core\RSoD.cs" />
     <Compile Include="Driver\Audio\PCSpeaker.cs" />
     <Compile Include="Driver\Core\IDT.cs" />
     <Compile Include="Driver\Core\IRQ.cs" />
@@ -102,6 +103,8 @@
     <Compile Include="Driver\Core\STIEnabler.cs" />
     <Compile Include="Driver\Core\Template\FACP.cs" />
     <Compile Include="Driver\Core\Template\RSDPtr.cs" />
+    <Compile Include="Driver\Graphics\Color.cs" />
+    <Compile Include="Driver\Graphics\VGAColors.cs" />
     <Compile Include="Driver\Graphics\VMWare\FIFO.cs" />
     <Compile Include="Driver\Graphics\VMWare\FIFOCommand.cs" />
     <Compile Include="Driver\Graphics\VMWare\IOPortOffset.cs" />
@@ -113,7 +116,9 @@
     <Compile Include="Driver\IO\IOPort.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\StringExtensions.cs" />
+    <Compile Include="HAL\CPU.cs" />
     <Compile Include="HAL\Display.cs" />
+    <Compile Include="HAL\KeyBoard\KeyLayout.cs" />
     <Compile Include="HAL\KeyBoard\KeyLayoutBase.cs" />
     <Compile Include="HAL\KeyBoard\Layout\AZERTY.cs" />
     <Compile Include="HAL\KeyBoard\Layout\QWERTY.cs" />
@@ -125,6 +130,7 @@
     <Compile Include="IO\VideoStream.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Copyright.txt" />
