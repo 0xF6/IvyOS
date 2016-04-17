@@ -1,4 +1,6 @@
-﻿namespace PolarisOS.Core
+﻿using Cosmos.Core;
+
+namespace PolarisOS.Core
 {
     using System;
     using Cosmos.HAL.SolarisGroup;
@@ -13,7 +15,7 @@
         /// <param name="error">Error title or exception name</param>
         /// <param name="description">Error description</param>
         /// <param name="critical">Critical error?</param>
-        public static void Init(
+        public static void Push(
             string error = "Something went wrong!",
             string description = "Unknown exception",
             bool critical = false)
@@ -56,7 +58,7 @@
                 // ACPI.Shutdown();
             }
         }
-        public static void Init(KernelException ex, bool critical = false)
+        public static void Push(KernelException ex, bool critical = true)
         {
             DrawOOPS();
             if (ex.Message.Length + 27 < Terminal.WindowHeight)
@@ -73,7 +75,7 @@
                 Terminal.CursorTop = 12; Terminal.CursorLeft = 2;
                 ConsoleColor errcolor = ConsoleColor.White;
                 if (critical) errcolor = ConsoleColor.Black;
-                Terminal.White(ex.MethodBase);
+                Terminal.White(ex.MethodBase ?? "MethodBase is null");
                 Terminal.CursorTop = 14; Terminal.CursorLeft = 2;
                 Terminal.White(ex.Message);
             }
@@ -87,11 +89,32 @@
             }
             else
             {
-                Terminal.CursorTop = Terminal.WindowHeight - 4;
+                Terminal.White("").newLine();
+                if (ex.isSetContext)
+                {
+                    Terminal.White("\t\t\t")
+                        .Magenta(nameof(ex.context.EAX)).White($" {ex.context.EAX} ")
+                        .Magenta(nameof(ex.context.EBX)).White($" {ex.context.EBX} ")
+                        .Magenta(nameof(ex.context.EBP)).White($" {ex.context.EBP} ")
+                        .Magenta(nameof(ex.context.ECX)).White($" {ex.context.ECX} ")
+                        .Magenta(nameof(ex.context.EDI)).White($" {ex.context.EDI} ")
+                        .newLine();
+                    Terminal.White("\t\t\t")
+                        .Magenta(nameof(ex.context.EIP)).White($" {ex.context.EIP} ")
+                        .Magenta(nameof(ex.context.ESI)).White($" {ex.context.ESI} ")
+                        .Magenta(nameof(ex.context.ESP)).White($" {ex.context.ESP} ")
+                        .Magenta(nameof(ex.context.EDX)).White($" {ex.context.EDX} ")
+                        .Magenta(nameof(ex.context.CS)).White($" {ex.context.CS} ")
+                        .Magenta(nameof(ex.context.EFlags)).White($" {(int)ex.context.EFlags} ")
+                        .newLine();
+                    Terminal.CursorTop = Terminal.WindowHeight - 2;
+
+                }
+                else
+                    Terminal.CursorTop = Terminal.WindowHeight - 4;
+
                 Terminal.White("").AtColor("Press the [Enter]-key to shutdown.", ConsoleColor.White, true, false).newLine();
-                Terminal.CursorTop++;
                 Terminal.White("").AtColor("If it doesn't work, press the RESET-button on your computer.", ConsoleColor.White, true, false).newLine();
-                Terminal.CursorTop++;
                 Terminal.ReadLine();
                 // ACPI.Shutdown();
             }
