@@ -3,7 +3,7 @@
 namespace PolarisOS.Core
 {
     using System;
-    using Cosmos.HAL.SolarisGroup;
+    using Cosmos.HAL.PolarisGroup;
     using Exception;
 
     // Red Screen of Death :D

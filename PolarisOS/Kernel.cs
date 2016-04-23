@@ -1,6 +1,6 @@
 ﻿using System;
 using Cosmos.Core;
-using Cosmos.HAL.SolarisGroup;
+using Cosmos.HAL.PolarisGroup;
 using Cosmos.System.Network;
 using PolarisOS.Core;
 using PolarisOS.Driver.Graphics.VMWare;

@@ -1,6 +1,6 @@
 ﻿namespace PolarisOS
 {
-    using Cosmos.HAL.SolarisGroup;
+    using Cosmos.HAL.PolarisGroup;
 
     public static class StringExtensions
     {
