@@ -130,7 +130,6 @@
     <Compile Include="IO\MemoryStream.cs" />
     <Compile Include="IO\Stream.cs" />
     <Compile Include="IO\VideoStream.cs" />
-    <Compile Include="ITRMx86.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
