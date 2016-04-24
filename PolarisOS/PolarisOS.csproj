@@ -106,7 +106,9 @@
     <Compile Include="Driver\Core\Template\IRQSafeContext.cs" />
     <Compile Include="Driver\Core\Template\RSDPtr.cs" />
     <Compile Include="Driver\Graphics\Color.cs" />
+    <Compile Include="Driver\Graphics\Frame.cs" />
     <Compile Include="Driver\Graphics\VGAColors.cs" />
+    <Compile Include="Driver\Graphics\VMWare\CVGA.cs" />
     <Compile Include="Driver\Graphics\VMWare\FIFO.cs" />
     <Compile Include="Driver\Graphics\VMWare\FIFOCommand.cs" />
     <Compile Include="Driver\Graphics\VMWare\IOPortOffset.cs" />

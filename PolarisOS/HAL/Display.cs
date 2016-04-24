@@ -9,8 +9,6 @@
         public struct SetupInfo
         {
             public DepthValue depth;
-            public bool isClear;
-            public ushort depthColor;
             public ScreenSize resolution;
         }
 
@@ -35,7 +33,7 @@
         public static void Setup(SetupInfo inf)
         {
             vga = new SVGADriver();
-            vga.SetMode(inf.resolution, inf.depth, inf.isClear, inf.depthColor);
+            vga.SetMode(inf.resolution, inf.depth);
             depth = inf.depth;
             CurrentRes = inf.resolution;
 
@@ -104,16 +102,18 @@
             foreach (Color t in VGAColors.PalletteEntrys)
                 SetPaletteEntry(t.Index, t);
             //! Now lets clear the screen to black, since 16 colors or 256 colors, they all contain black.
-            Clear(VGAColors.FindIndex(0, 0, 0));
+            //Clear(VGAColors.FindIndex(0, 0, 0));
             //! Now draw our test square.
-            if (vga.GetPixel(1, 1) != VGAColors.FindIndex(0, 0, 0)) return;
+            //if (vga.GetPixel(1, 1) != VGAColors.FindIndex(0, 0, 0)) return;
 
-            int c = VGAColors.FindIndex(255, 0, 0);
+            //int c = VGAColors.FindIndex(255, 0, 0);
 
-            for (uint y = 8; y < CurrentRes.getHeight() - 8; y++)
-            for (uint x = 8; x < CurrentRes.getWidth() - 8; x++)
-            SetPixel((int)x, (int)y, c);
+            //for (uint y = 8; y < CurrentRes.getHeight() - 8; y++)
+            //for (uint x = 8; x < CurrentRes.getWidth() - 8; x++)
+            //SetPixel((int)x, (int)y, c);
         }
+
+        public static SVGADriver getDriver() => vga;
 
         public static void Clear(int Color) => vga.Clear((uint)Color);
 

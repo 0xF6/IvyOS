@@ -1,6 +1,4 @@
-﻿using Cosmos.Core;
-
-namespace PolarisOS.Core
+﻿namespace PolarisOS.Core
 {
     using System;
     using Cosmos.HAL.PolarisGroup;

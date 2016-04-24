@@ -14,6 +14,7 @@
         v1366x768,
         v1440x900,
         v1600x1200,
+        v1600x768,
         v1680x1050,
         v1920x1080
     }
@@ -38,11 +39,13 @@
                 case ScreenSize.v1440x900:
                     return 1440;
                 case ScreenSize.v1600x1200:
+                case ScreenSize.v1600x768:
                     return 1600;
                 case ScreenSize.v1680x1050:
                     return 1680;
                 case ScreenSize.v1920x1080:
                     return 1920;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(s), s, null);
             }
@@ -55,6 +58,7 @@
                     return 600;
                 case ScreenSize.v1360x768:
                 case ScreenSize.v1366x768:
+                case ScreenSize.v1600x768:
                 case ScreenSize.v1024x768:
                     return 768;
                 case ScreenSize.v1280x720:
@@ -130,7 +134,7 @@
             WriteRegister(VGARegister.ConfigDone, 1);
         }
 
-        public void SetMode(ScreenSize size, DepthValue depth, bool isClear = true, ushort colorClear = 255)
+        public void SetMode(ScreenSize size, DepthValue depth)
         {
             ushort depthUshort = 0;
 
@@ -179,11 +183,12 @@
                 case ScreenSize.v1920x1080:
                     SetMode(1920, 1080, depthUshort);
                     break;
+                case ScreenSize.v1600x768:
+                    SetMode(1600, 768, depthUshort);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(size), size, null);
             }
-            if (isClear)
-                Clear(colorClear);
         }
 
 
@@ -361,7 +366,7 @@
             count = 0;
             for (i = 0; i < length; i++)
                 for (t = 0; t < width; t++, count++)
-                    if (Arr[count] != 0xFF00FF)
+                    if (Arr[count] != 0xff00ff || Arr[count] != 0x0)
                         SetPixel((int) (0 + (uint) t + 0 + (uint) xpixel), (int) (0 + (uint) i + 0 + (uint) ypixel), (int) Arr[count]);
         }
 
