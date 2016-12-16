@@ -1,0 +1,38 @@
+﻿using System;
+using Cosmos.Core;
+
+namespace IvyOS.Driver.Audio
+{
+    public class PCSpeaker
+    {
+        public static void playSound(UInt32 nFrequence)
+        {
+            UInt32 Div;
+            UInt16 tmp;
+
+            //Set the PIT to the desired frequency
+            Div = 1193180 / nFrequence;
+            BaseIOGroups.PCSpeaker.p43.Byte = (byte)0xB6;
+            BaseIOGroups.PCSpeaker.p42.Byte = (byte)Div;
+            BaseIOGroups.PCSpeaker.p42.Byte = (byte)(Div >> 8);
+
+            tmp = BaseIOGroups.PCSpeaker.p61.Byte;
+            if (tmp != (tmp | 3))
+                BaseIOGroups.PCSpeaker.p61.Byte = (byte)(tmp | 3);
+        }
+        public static void nosound()
+        {
+            byte tmp = (byte)(BaseIOGroups.PCSpeaker.p61.Byte & 0xFC);
+
+            BaseIOGroups.PCSpeaker.p61.Byte = tmp;
+        }
+
+        public static void beep()
+        {
+            playSound(1000);
+            UInt32 div = 1193180;
+            BaseIOGroups.PCSpeaker.p42.Byte = (byte)div;
+            //PIT.PITFrequency = 1193180;
+        }
+    }
+}
