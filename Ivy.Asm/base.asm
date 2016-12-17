@@ -1,0 +1,2 @@
+MultiBootInfo_Memory_High dd 0
+MultiBootInfo_Memory_Low  dd 0
