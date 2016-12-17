@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="ProtectMode.asm" />
+    <None Include="intelGC.asm" />
+    <None Include="boot\_start_program.asm">
+      <Filter>Boot</Filter>
+    </None>
+    <None Include="boot\header.asm">
+      <Filter>Boot</Filter>
+    </None>
+    <None Include="boot\start.asm">
+      <Filter>Boot</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Boot">
+      <UniqueIdentifier>{6e5b2754-2781-479b-80b1-7af2b2b9f3b8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="getMemory.asm" />
+  </ItemGroup>
+</Project>
