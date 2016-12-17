@@ -94,56 +94,18 @@
     <Reference Include="System.Xml" />
     <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="API.cs" />
-    <Compile Include="Core\Exception\KernelException.cs" />
-    <Compile Include="Core\Math.cs" />
+    <ProjectReference Include="..\Ivy.Framework\Ivy.Framework.csproj">
+      <Project>{13c7de30-c728-483d-ad38-c6cab6e48659}</Project>
+      <Name>Ivy.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Core\Paths.cs" />
-    <Compile Include="Core\Power.cs" />
-    <Compile Include="Driver\Audio\PCSpeaker.cs" />
-    <Compile Include="Driver\Core\IDT.cs" />
-    <Compile Include="Driver\Core\IRQ.cs" />
-    <Compile Include="Driver\Core\PIT.cs" />
-    <Compile Include="Driver\Core\RSoD.cs" />
-    <Compile Include="Driver\Core\STIEnabler.cs" />
-    <Compile Include="Driver\Core\Template\FACP.cs" />
-    <Compile Include="Driver\Core\Template\IRQSafeContext.cs" />
-    <Compile Include="Driver\Core\Template\RSDPtr.cs" />
-    <Compile Include="Driver\Graphics\Color.cs" />
-    <Compile Include="Driver\Graphics\Frame.cs" />
-    <Compile Include="Driver\Graphics\VGAColors.cs" />
-    <Compile Include="Driver\Graphics\VMWare\CVGA.cs" />
-    <Compile Include="Driver\Graphics\VMWare\FIFO.cs" />
-    <Compile Include="Driver\Graphics\VMWare\FIFOCommand.cs" />
-    <Compile Include="Driver\Graphics\VMWare\IOPortOffset.cs" />
-    <Compile Include="Driver\Graphics\VMWare\SVGA.cs" />
-    <Compile Include="Driver\Graphics\VMWare\VGACapability.cs" />
-    <Compile Include="Driver\Graphics\VMWare\VGAID.cs" />
-    <Compile Include="Driver\Graphics\VMWare\VGARegister.cs" />
-    <Compile Include="Driver\IO\IOBus.cs" />
-    <Compile Include="Driver\IO\IOPort.cs" />
-    <Compile Include="Extension\NumericExtensions.cs" />
-    <Compile Include="Extension\StringExtensions.cs" />
-    <Compile Include="HAL\ACPI.cs" />
-    <Compile Include="HAL\CPU.cs" />
-    <Compile Include="HAL\Display.cs" />
-    <Compile Include="HAL\KeyBoard\KeyLayout.cs" />
-    <Compile Include="HAL\KeyBoard\KeyLayoutBase.cs" />
-    <Compile Include="HAL\KeyBoard\Layout\AZERTY.cs" />
-    <Compile Include="HAL\KeyBoard\Layout\QWERTY.cs" />
-    <Compile Include="HAL\KeyBoard\Layout\QWERTZ.cs" />
-    <Compile Include="IO\BinaryWriter.cs" />
-    <Compile Include="IO\IOPort.cs" />
-    <Compile Include="IO\MemoryManager.cs" />
-    <Compile Include="IO\MemoryStream.cs" />
-    <Compile Include="IO\Stream.cs" />
     <Compile Include="IO\UserSystem.cs" />
-    <Compile Include="IO\VideoStream.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
-    <Compile Include="Threading\Threasd.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

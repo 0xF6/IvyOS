@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{81692032-c3a3-419b-a0a6-4ce485348a5d}</ProjectGuid>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <Name>IvyOSBoot</Name>
+    <BinFormat>Elf</BinFormat>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Profile>VMware</Profile>
+    <!-- Looks like this was a mispelled attribute. Replaced by DebugEnabled below.
+    <DebugEnable>true</DebugEnable>
+    -->
+    <DebugEnabled>False</DebugEnabled>
+    <DebugMode>Source</DebugMode>
+    <TraceMode>User</TraceMode>
+    <EnableGDB>False</EnableGDB>
+    <StartCosmosGDB>False</StartCosmosGDB>
+    <VMWareEdition>Workstation</VMWareEdition>
+    <OutputPath>bin\Debug2\</OutputPath>
+    <Name>IvyOSBoot</Name>
+    <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+    <Deployment>ISO</Deployment>
+    <Launch>VMware</Launch>
+    <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+    <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
+    <TraceAssemblies>User</TraceAssemblies>
+    <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
+    <VMware_Name>IvyOSBoot</VMware_Name>
+    <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
+    <VMware_Deployment>ISO</VMware_Deployment>
+    <VMware_Launch>VMware</VMware_Launch>
+    <VMware_DebugEnabled>False</VMware_DebugEnabled>
+    <VMware_DebugMode>Source</VMware_DebugMode>
+    <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
+    <VMware_VMwareEdition>Workstation</VMware_VMwareEdition>
+    <VMware_OutputPath>bin\Debug2\</VMware_OutputPath>
+    <VMware_TraceAssemblies>User</VMware_TraceAssemblies>
+    <VMware_EnableGDB>False</VMware_EnableGDB>
+    <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
+    <PxeInterface>192.168.1.65</PxeInterface>
+    <VMware_PxeInterface>192.168.1.65</VMware_PxeInterface>
+    <IntelEdison_StackCorruptionDetectionLevel>MethodFooters</IntelEdison_StackCorruptionDetectionLevel>
+    <IntelEdison_Name>IvyOSBoot</IntelEdison_Name>
+    <IntelEdison_Description>Connect to Intel Edison device to deploy and debug.</IntelEdison_Description>
+    <IntelEdison_Deployment>BinaryImage</IntelEdison_Deployment>
+    <IntelEdison_Launch>IntelEdison</IntelEdison_Launch>
+    <IntelEdison_DebugEnabled>False</IntelEdison_DebugEnabled>
+    <IntelEdison_DebugMode>Source</IntelEdison_DebugMode>
+    <IntelEdison_VisualStudioDebugPort>Pipe: Cosmos\Serial</IntelEdison_VisualStudioDebugPort>
+    <IntelEdison_PxeInterface>192.168.1.65</IntelEdison_PxeInterface>
+    <IntelEdison_VMwareEdition>Workstation</IntelEdison_VMwareEdition>
+    <IntelEdison_OutputPath>bin\Debug2\</IntelEdison_OutputPath>
+    <IntelEdison_TraceAssemblies>User</IntelEdison_TraceAssemblies>
+    <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
+    <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
+    <ISO_StackCorruptionDetectionLevel>MethodFooters</ISO_StackCorruptionDetectionLevel>
+    <ISO_Name>IvyOSBoot</ISO_Name>
+    <ISO_Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</ISO_Description>
+    <ISO_Deployment>ISO</ISO_Deployment>
+    <ISO_Launch>None</ISO_Launch>
+    <ISO_DebugEnabled>False</ISO_DebugEnabled>
+    <ISO_DebugMode>Source</ISO_DebugMode>
+    <ISO_VisualStudioDebugPort>Pipe: Cosmos\Serial</ISO_VisualStudioDebugPort>
+    <ISO_PxeInterface>192.168.1.65</ISO_PxeInterface>
+    <ISO_VMwareEdition>Workstation</ISO_VMwareEdition>
+    <ISO_OutputPath>bin\Debug2\</ISO_OutputPath>
+    <ISO_TraceAssemblies>User</ISO_TraceAssemblies>
+    <ISO_EnableGDB>False</ISO_EnableGDB>
+    <ISO_StartCosmosGDB>False</ISO_StartCosmosGDB>
+    <USB_StackCorruptionDetectionLevel>MethodFooters</USB_StackCorruptionDetectionLevel>
+    <USB_Name>IvyOSBoot</USB_Name>
+    <USB_Description>Makes a USB device such as a flash drive or external hard disk bootable.</USB_Description>
+    <USB_Deployment>USB</USB_Deployment>
+    <USB_Launch>None</USB_Launch>
+    <USB_DebugEnabled>False</USB_DebugEnabled>
+    <USB_DebugMode>Source</USB_DebugMode>
+    <USB_VisualStudioDebugPort>Pipe: Cosmos\Serial</USB_VisualStudioDebugPort>
+    <USB_PxeInterface>192.168.1.65</USB_PxeInterface>
+    <USB_VMwareEdition>Workstation</USB_VMwareEdition>
+    <USB_OutputPath>bin\Debug2\</USB_OutputPath>
+    <USB_TraceAssemblies>User</USB_TraceAssemblies>
+    <USB_EnableGDB>False</USB_EnableGDB>
+    <USB_StartCosmosGDB>False</USB_StartCosmosGDB>
+    <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
+    <ISO_StackCorruptionDetectionEnabled>True</ISO_StackCorruptionDetectionEnabled>
+    <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IvyOS.Plug\IvyOS.Plug.csproj">
+      <Name>IvyOS.Plug</Name>
+      <Project>{fac6a3a1-99b8-46af-9eaa-d75af5762188}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\IvyOS\IvyOS.csproj">
+      <Name>IvyOS</Name>
+      <Project>{cca61b16-e5ac-44c4-b11b-f4106a0551c4}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cosmos.Core.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.System.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.Debug.Kernel.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+  </ItemGroup>
+  <!--<ItemGroup>
+    <Content Include="Cosmos.bxrc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>-->
+  <Import Project="$(MSBuildExtensionsPath)\Cosmos\Cosmos.targets" />
+</Project>

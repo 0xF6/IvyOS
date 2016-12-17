@@ -1,8 +1,7 @@
-﻿
-namespace IvyOS.Core
+﻿namespace IvyOS.Core
 {
-    using Driver.Core;
-    using IO;
+    using Ivy.Framework.Driver;
+    using Ivy.Framework.Core;
     using Cosmos.IL2CPU.Plugs;
     using CPUx86 = Cosmos.Assembler.x86;
     using Cosmos.Core;
@@ -35,14 +34,9 @@ namespace IvyOS.Core
         public static void HandleInterrupt_20(ref IRQContext aContext)
         {
             Global.PIC.EoiMaster();
-            IOPorts.Outb(0x20, 0x20);
+            AXP.Outb(0x20, 0x20);
             PIT.called = true;
         }
-    }
-    public class STIEnabler
-    {
-        public void Enable()
-        { }
     }
     [Plug(Target = typeof(STIEnabler))]
     public class Enable : AssemblerMethod
