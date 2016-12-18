@@ -73,26 +73,29 @@
     <Reference Include="Cosmos.Assembler">
       <HintPath>C:\Users\ls-mi\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Assembler.dll</HintPath>
     </Reference>
-    <Reference Include="Cosmos.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=x86">
+    <Reference Include="Cosmos.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\ls-mi\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Common.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Common.dll</HintPath>
     </Reference>
     <Reference Include="Cosmos.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Debug.Kernel.dll</HintPath>
+    </Reference>
     <Reference Include="Cosmos.HAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.HAL.dll</HintPath>
     </Reference>
-    <Reference Include="Cosmos.System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=x86">
+    <Reference Include="Cosmos.System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\ls-mi\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.System.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Cosmos.Debug.Kernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ivy.Framework\Ivy.Framework.csproj">
@@ -103,7 +106,6 @@
   <ItemGroup>
     <Compile Include="Core\Paths.cs" />
     <Compile Include="IO\IvyFS.cs" />
-    <Compile Include="IO\UserSystem.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />

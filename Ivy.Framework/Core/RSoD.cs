@@ -1,4 +1,6 @@
-﻿namespace Ivy.Framework.Core
+﻿using Cosmos.HAL;
+
+namespace Ivy.Framework.Core
 {
     using System;
     using Ivy.HAL;
@@ -7,18 +9,15 @@
     public class RSoD
     {
         
-         /// <summary>
+        /// <summary>
         /// Initiates a Redscreen.
         /// </summary>
         /// <param name="error">Error title or exception name</param>
         /// <param name="description">Error description</param>
         /// <param name="critical">Critical error?</param>
-        public static void Push(
-            string error = "Something went wrong!",
-            string description = "Unknown exception",
-            bool critical = false)
+        public static void Push(string error = "Something went wrong!",string description = "Unknown exception", bool critical = false)
         {
-            DrawOOPS();
+            DrawSplash();
             if (description.Length + 33 < Console.WindowHeight)
             {
                 Console.CursorTop = 2; Console.CursorLeft = 33;
@@ -52,9 +51,23 @@
                 // ACPI.Shutdown();
             }
         }
+
+        public static void newLine()
+        {
+            Cosmos.System.Global.Console.Y++;
+            Cosmos.System.Global.Console.X = 0;
+            if (Cosmos.System.Global.Console.Y == Cosmos.HAL.Global.TextScreen.Rows)
+            {
+                Cosmos.HAL.Global.TextScreen.ScrollUp();
+                Cosmos.System.Global.Console.Y = Cosmos.HAL.Global.TextScreen.Rows - 1;
+                Cosmos.System.Global.Console.X = 0;
+            }
+            Cosmos.HAL.Global.TextScreen.SetCursorPos(Cosmos.System.Global.Console.X, Cosmos.System.Global.Console.Y);
+        }
+
         public static void Push(KernelException ex, bool critical = true)
         {
-            DrawOOPS();
+            DrawSplash();
             if (ex.Message.Length + 27 < Terminal.WindowHeight)
             {
                 Terminal.CursorTop = 2; Terminal.CursorLeft = 27;
@@ -103,8 +116,7 @@
                 else
                     Terminal.CursorTop = Terminal.WindowHeight - 4;
 
-                Terminal.White("").AtColor("Press the [Enter]-key to shutdown.", ConsoleColor.White, true, false).newLine();
-                Terminal.White("").AtColor("If it doesn't work, press the RESET-button on your computer.", ConsoleColor.White, true, false).newLine();
+                Terminal.White("").AtColor("Press the 'RESET'-button on restart u'r controller.", ConsoleColor.White, true, false).newLine();
                 Terminal.ReadLine();
                 // ACPI.Shutdown();
                 while (true)
@@ -114,6 +126,11 @@
             }
         }
 
+        /*
+         
+
+             */
+
         private static string[] arrOOPS = {
                 "======  ======  =====  =====  =",
                 "=    =  =    =  =   =  =      =",
@@ -121,10 +138,22 @@
                 "=    =  =    =  =          =   ",
                 "======  ======  =      =====  ="};
 
+        private static string[] arrSplash =
+        {
+            " _____         _              _      _ ",
+            "/  ___|       | |            | |    | |",
+            "\\ `--.  _ __  | |  __ _  ___ | |__  | |",
+            " `--. \\| '_ \\ | | / _` |/ __|| '_ \\ | |",
+            "/\\__/ /| |_) || || (_| |\\__ \\| | | ||_|",
+            "\\____/ | .__/ |_| \\__,_||___/|_| |_|(_)",
+            "       | |                             ",
+            "       |_|                             "
+        };
+        
         private static void DrawOOPS()
         {
-            Terminal.Fill(ConsoleColor.DarkRed).setBackgroundColor(ConsoleColor.DarkRed);
-           
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Terminal.Fill(ConsoleColor.DarkRed);
             Terminal.CursorTop = 2;
             for (int i = 0; i != arrOOPS.Length; i++)
             {
@@ -132,6 +161,20 @@
                 Terminal.White(arrOOPS[i]).newLine();
             }
         }
+        private static void DrawSplash()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Terminal.Fill(ConsoleColor.DarkGreen);
+
+            Terminal.CursorTop = 2;
+            for (int i = 0; i != arrSplash.Length; i++)
+            {
+                Terminal.CursorLeft += 2;
+                Terminal.White(arrSplash[i]);
+                Terminal.White("\0");
+            }
+        }
+
 
         /// <summary>
         /// Kernel Panic

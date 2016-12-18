@@ -62,7 +62,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ByteImpl.cs" />
     <Compile Include="Core\INTs.cs" />
+    <Compile Include="Core\TextScreenImpl.cs" />
     <Compile Include="Core\Thread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

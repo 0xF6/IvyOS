@@ -6,13 +6,9 @@
     [Plug(Target = typeof(System.Threading.Thread))]
     public class Thread
     {
-        public string Name
-        {
-            get { return "IVY_ROOT_THREAD"; }
-            set { }
-        }
-
-        public static Thread CurrentThread { get; } = new Thread();
+        private static readonly Thread th = new Thread();
+        public string get_Name() => "IVY_ROOT_THREAD";
+        public static Thread get_CurrentThread() => th;
 
         public static void Sleep(int ms)
         {

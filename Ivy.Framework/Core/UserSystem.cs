@@ -1,6 +1,26 @@
-﻿namespace IvyOS.IO
+﻿using System;
+
+namespace Ivy.Framework.Core
 {
     using System.Collections.Generic;
+
+    public static class RankEx
+    {
+        public static string ToName(this UserSystem.Rank r)
+        {
+            switch (r)
+            {
+                case UserSystem.Rank.User:
+                    return "user";
+                case UserSystem.Rank.Admin:
+                    return "admin";
+                case UserSystem.Rank.System:
+                    return "sys";
+            }
+            return "kernel";
+        }
+    }
+
     public class UserSystem
     {
         public enum Rank

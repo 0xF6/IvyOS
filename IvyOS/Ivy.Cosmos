@@ -20,15 +20,15 @@
     <EnableGDB>False</EnableGDB>
     <StartCosmosGDB>False</StartCosmosGDB>
     <VMWareEdition>Workstation</VMWareEdition>
-    <OutputPath>bin\Debug2\</OutputPath>
+    <OutputPath>bin\Debug7\</OutputPath>
     <Name>IvyOSBoot</Name>
     <Description>Use VMware Player or Workstation to deploy and debug.</Description>
     <Deployment>ISO</Deployment>
     <Launch>VMware</Launch>
     <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
-    <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
-    <TraceAssemblies>User</TraceAssemblies>
-    <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
+    <StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
+    <TraceAssemblies>All</TraceAssemblies>
+    <VMware_StackCorruptionDetectionLevel>AllInstructions</VMware_StackCorruptionDetectionLevel>
     <VMware_Name>IvyOSBoot</VMware_Name>
     <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
     <VMware_Deployment>ISO</VMware_Deployment>
@@ -37,8 +37,8 @@
     <VMware_DebugMode>Source</VMware_DebugMode>
     <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
     <VMware_VMwareEdition>Workstation</VMware_VMwareEdition>
-    <VMware_OutputPath>bin\Debug2\</VMware_OutputPath>
-    <VMware_TraceAssemblies>User</VMware_TraceAssemblies>
+    <VMware_OutputPath>bin\Debug7\</VMware_OutputPath>
+    <VMware_TraceAssemblies>All</VMware_TraceAssemblies>
     <VMware_EnableGDB>False</VMware_EnableGDB>
     <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
     <PxeInterface>192.168.1.65</PxeInterface>
@@ -88,6 +88,22 @@
     <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
     <ISO_StackCorruptionDetectionEnabled>True</ISO_StackCorruptionDetectionEnabled>
     <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
+    <PXE_StackCorruptionDetectionEnabled>True</PXE_StackCorruptionDetectionEnabled>
+    <PXE_StackCorruptionDetectionLevel>AllInstructions</PXE_StackCorruptionDetectionLevel>
+    <PXE_Name>IvyOSBoot</PXE_Name>
+    <PXE_Description>Creates a PXE setup and hosts a DCHP and TFTP server to deploy directly to physical hardware. Allows debugging with a serial cable.</PXE_Description>
+    <PXE_Deployment>PXE</PXE_Deployment>
+    <PXE_Launch>None</PXE_Launch>
+    <PXE_DebugEnabled>False</PXE_DebugEnabled>
+    <PXE_DebugMode>Source</PXE_DebugMode>
+    <PXE_VisualStudioDebugPort>Pipe: Cosmos\Serial</PXE_VisualStudioDebugPort>
+    <PXE_PxeInterface>192.168.1.65</PXE_PxeInterface>
+    <PXE_VMwareEdition>Workstation</PXE_VMwareEdition>
+    <PXE_OutputPath>bin\Debug4\</PXE_OutputPath>
+    <PXE_TraceAssemblies>All</PXE_TraceAssemblies>
+    <PXE_EnableGDB>False</PXE_EnableGDB>
+    <PXE_StartCosmosGDB>False</PXE_StartCosmosGDB>
+    <USB_StackCorruptionDetectionEnabled>True</USB_StackCorruptionDetectionEnabled>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\IvyOS.Plug\IvyOS.Plug.csproj">
@@ -102,9 +118,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cosmos.Core.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
-    <Reference Include="Cosmos.System.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
-    <Reference Include="Cosmos.Debug.Kernel.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.Core.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983">
+      <Name>Cosmos.Core.Plugs</Name>
+      <AssemblyName>Cosmos.Core.Plugs.dll</AssemblyName>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Core.Plugs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cosmos.Debug.Kernel.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983">
+      <Name>Cosmos.Debug.Kernel.Plugs</Name>
+      <AssemblyName>Cosmos.Debug.Kernel.Plugs.dll</AssemblyName>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.Debug.Kernel.Plugs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cosmos.System.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983">
+      <Name>Cosmos.System.Plugs</Name>
+      <AssemblyName>Cosmos.System.Plugs.dll</AssemblyName>
+      <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\Cosmos.System.Plugs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <!--<ItemGroup>
     <Content Include="Cosmos.bxrc">

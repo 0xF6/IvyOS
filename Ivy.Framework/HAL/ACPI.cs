@@ -103,7 +103,7 @@
                         return (uint*)rsdp->RsdtAddress;
                 }
             }
-            Terminal.WrapRed("ACPI").White("Unable to find RSDT. ACPI not available!").Dot(true);
+            Terminal.WrapMagenta("ACPI").White("Unable to find RSDT. ACPI not available!").Dot(true);
             return null;
         }
 
@@ -147,7 +147,6 @@
         public static int Enable()
         {
             // check if acpi is enabled
-
             if (pm1aIO.Word == 0)
             {
                 // check if acpi can be enabled
@@ -173,30 +172,32 @@
                         }
                     if (i < 300)
                     {
-
+                        Terminal.WrapMagenta("ACPI").Green("Enabled").White("!").newLine();
                         return 0;
                     }
                     else
                     {
-                        Terminal.WrapRed("ACPI").White("couldn't enable acpi").Dot(true);
+                        Terminal.WrapMagenta("ACPI").White("couldn't enable acpi").Dot(true);
                         return -1;
                     }
                 }
                 else
                 {
-                    Terminal.WrapRed("ACPI").White("no known way to enable acpi").Dot(true);
+                    Terminal.WrapMagenta("ACPI").White("no known way to enable acpi").Dot(true);
                     return -1;
                 }
             }
             else
             {
-
+                Terminal.WrapMagenta("ACPI").Green("Enabled").White("!").newLine();
                 return 0;
             }
         }
         public static void Disable()
         {
             smiIO.Byte = ACPI_DISABLE;
+            Terminal.WrapMagenta("ACPI").Red("Disabled").White("!").newLine();
+
         }
         public static int Init()
         {
@@ -288,26 +289,26 @@
                                     return 0;
                                 }
                                 else
-                                    Terminal.WrapRed("ACPI").White("\\_S5 parse error").Dot(true);
+                                    Terminal.WrapMagenta("ACPI").White("\\_S5 parse error").Dot(true);
                             }
                             else
                             {
-                                Terminal.WrapRed("ACPI").White("\\_S5 not present").Dot(true);
+                                Terminal.WrapMagenta("ACPI").White("\\_S5 not present").Dot(true);
                             }
                         }
                         else
                         {
-                            Terminal.WrapRed("ACPI").White("DSDT invalid").Dot(true);
+                            Terminal.WrapMagenta("ACPI").White("DSDT invalid").Dot(true);
                         }
                     }
                     ptr += 4;
                 }
-                Terminal.WrapRed("ACPI").White("no valid FACP present").Dot(true);
+                Terminal.WrapMagenta("ACPI").White("no valid FACP present").Dot(true);
 
             }
             else
             {
-                Terminal.WrapRed("ACPI").White("No ACPI").Dot(true);
+                Terminal.WrapMagenta("ACPI").White("No ACPI").Dot(true);
 
             }
 

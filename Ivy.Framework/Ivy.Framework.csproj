@@ -66,6 +66,7 @@
     <Compile Include="Core\Math.cs" />
     <Compile Include="Core\Power.cs" />
     <Compile Include="Core\RSoD.cs" />
+    <Compile Include="Core\UserSystem.cs" />
     <Compile Include="Driver\AXP.cs" />
     <Compile Include="Driver\IDT.cs" />
     <Compile Include="Driver\IRQ.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Driver\Structure\FACP.cs" />
     <Compile Include="Driver\Structure\IRQSafeContext.cs" />
     <Compile Include="Driver\Structure\RSDPtr.cs" />
+    <Compile Include="Graphic\BootScreen.cs" />
     <Compile Include="Graphic\Color.cs" />
     <Compile Include="HAL\ACPI.cs" />
     <Compile Include="HAL\IO\FAT\FATDirectory.cs" />
