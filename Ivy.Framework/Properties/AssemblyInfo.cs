@@ -6,4 +6,4 @@ using Cosmos.Common;
 [assembly: AssemblyProduct("Ivy.Framework")]
 [assembly: AssemblyCopyright("Copyright © Yuuki Wesp 2016")]
 
-[assembly: Ring(Ring.Core)]
+//[assembly: Ring(Ring.Core)]

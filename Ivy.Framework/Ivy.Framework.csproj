@@ -76,6 +76,9 @@
     <Compile Include="Driver\Structure\RSDPtr.cs" />
     <Compile Include="Graphic\Color.cs" />
     <Compile Include="HAL\ACPI.cs" />
+    <Compile Include="HAL\IO\FAT\FATDirectory.cs" />
+    <Compile Include="HAL\IO\FAT\FATFileSystem.cs" />
+    <Compile Include="HAL\IO\FAT\FatStream.cs" />
     <Compile Include="HAL\IO\MemoryStream.cs" />
     <Compile Include="HAL\IO\VideoStream.cs" />
     <Compile Include="KernelException.cs" />
