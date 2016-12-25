@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Core\ByteImpl.cs" />
     <Compile Include="Core\INTs.cs" />
+    <Compile Include="Core\MathImpl.cs" />
     <Compile Include="Core\TextScreenImpl.cs" />
     <Compile Include="Core\Thread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

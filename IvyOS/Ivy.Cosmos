@@ -20,7 +20,7 @@
     <EnableGDB>False</EnableGDB>
     <StartCosmosGDB>False</StartCosmosGDB>
     <VMWareEdition>Workstation</VMWareEdition>
-    <OutputPath>bin\Debug7\</OutputPath>
+    <OutputPath>bin\Debug8\</OutputPath>
     <Name>IvyOSBoot</Name>
     <Description>Use VMware Player or Workstation to deploy and debug.</Description>
     <Deployment>ISO</Deployment>
@@ -37,7 +37,7 @@
     <VMware_DebugMode>Source</VMware_DebugMode>
     <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
     <VMware_VMwareEdition>Workstation</VMware_VMwareEdition>
-    <VMware_OutputPath>bin\Debug7\</VMware_OutputPath>
+    <VMware_OutputPath>bin\Debug8\</VMware_OutputPath>
     <VMware_TraceAssemblies>All</VMware_TraceAssemblies>
     <VMware_EnableGDB>False</VMware_EnableGDB>
     <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
@@ -104,6 +104,9 @@
     <PXE_EnableGDB>False</PXE_EnableGDB>
     <PXE_StartCosmosGDB>False</PXE_StartCosmosGDB>
     <USB_StackCorruptionDetectionEnabled>True</USB_StackCorruptionDetectionEnabled>
+    <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
+    <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
+    <USB_IgnoreDebugStubAttribute>False</USB_IgnoreDebugStubAttribute>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\IvyOS.Plug\IvyOS.Plug.csproj">
